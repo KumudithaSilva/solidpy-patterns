@@ -154,3 +154,58 @@ class Cat(Animal):
 | << override >>+speak()void |   | << override >>+speak()void |
 +----------------------------+   +----------------------------+
 ```
+
+### 🧩 Interfaces
+- It is like a promise: it defines methods that a class must implement, but does not provide the method’s code.
+- Interfaces help ensure that different classes provide the same functionality, making code more flexible and consistent.
+- In Python, interfaces are often created using abstract base classes (`abc` module).
+
+### ✅ Example:
+
+
+```python
+# imports needed for abstract classes
+from abc import ABC, abstractmethod
+
+# interface contact. Children will have to implement
+# all of the abstract methods. In an interface methods
+# have no implementation and add pass
+
+class Drawable(ABC):
+    @abstractmethod
+    def draw(self):
+        pass
+
+class Circle(Drawable):
+    def draw(self):
+        print("Drawing a circle.")
+
+class Square(Drawable):
+    def draw(self):
+        print("Drawing a square.")
+```
+
+```
+
++--------------------------------+
+|          <<interface>>         |
+|            Drawable            |
++--------------------------------+
+| + draw(): void                 |
++--------------------------------+
+      ^                  ^           
+      |                  |
+      |                  |   
+      |                  |
+      +----------        +--------------
+                |                       |
+                |                       |
++----------------------------+   +----------------------------+
+|             Circle         |   |             Square         |
++----------------------------+   +----------------------------+   
++----------------------------+   +----------------------------+
+| << create >>+Circle        |   | << create >>+Square        |
+| + draw(): void             |   | + draw(): void             |
++----------------------------+   +----------------------------+
+
+```
