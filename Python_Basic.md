@@ -209,3 +209,68 @@ class Square(Drawable):
 +----------------------------+   +----------------------------+
 
 ```
+
+### 🎭 Abstract 
+- An abstract class is a class that cannot be used on its own and is meant to be inherited by other classes.
+- In many cases, an abstract class is used to define shared functionality beyond just method signatures that can be inherited and extended by its subclasses.
+
+### ✅ Example:
+
+```python
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+    # Concrete method shared by all sub class
+    def start_engine(self):
+        print("Engine started.")
+
+    #Abstract method — must be implemented by all subclasses
+    @abstractmethod
+    def drive(self):
+        pass
+    
+    # Default behavior — can be overridden
+    def fuel_type(self):
+        print("Uses gasoline.") 
+
+class Car(Vehicle):
+    def drive(self):
+        print("Car is driving.")
+    # Inherits fuel_type() from Vehicle (no need to override)
+
+class Truck(Vehicle):
+    def drive(self):
+        print("Truck is hauling.")
+
+    # Overrides the default method
+    def fuel_type(self):
+        print("Uses diesel.")
+    
+
+car = Car()
+truck = Truck()
+
+car.start_engine()   # Inherited from Vehicle
+car.drive()          # Must be implemented in subclass
+
+truck.start_engine()
+truck.drive()
+```
+```
++--------------------------------+
+|          <<abstract>>           |
+|            Vehicle             |
++--------------------------------+
+| + start_engine(): void          |
+| + fuel_type(): void             |
+| + drive(): void <<abstract>>    |
++--------------------------------+
+      ^                        ^
+      |                        |
++--------------------+   +--------------------+
+|        Car         |   |       Truck        |
++--------------------+   +--------------------+
+| + drive(): void    |   | + drive(): void    |
+|                    |   | + fuel_type(): void|  
++--------------------+   +--------------------+
+```
