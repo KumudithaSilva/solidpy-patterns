@@ -9,7 +9,7 @@ It states that high-level models should not depend on low-level modules.
 """
 This class violates the Dependency Inversion Principal (DIP).
 
-The Computer is high-level class and,  it directly depends on Keyboard class 
+The Computer is high-level class and, it directly depends on Keyboard class 
 it can’t easily change the input devices.
 
 This breaks the DIP because high-level class never should depends on low-level class.
