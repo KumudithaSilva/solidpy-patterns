@@ -23,7 +23,7 @@ It provides diagrams to model:
     - Dependencies
 
     
-<img src="images/Class_Diagram.png" alt="img" width="500px" />
+<img src="../images/Class_Diagram.png" alt="img" width="500px" />
 
 ## Composition vs Aggregation in UML
 
@@ -57,7 +57,7 @@ Represents a **weak "whole-part" relationship** where the part **can exist indep
     - **Self-Messages:** When an object sends a message to itself.
     <br><br>
 
-<img src="images/Sequence_Diagram.png" alt="img" width="500px" />
+<img src="../images/Sequence_Diagram.png" alt="img" width="500px" />
 
 
 
