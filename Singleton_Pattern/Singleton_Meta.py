@@ -6,7 +6,6 @@ class attribute, methods, or the properties before the class actually created.
 
 By default, all Python classes implicitly inherit from the type build-class,
 which itself a Meta class.
-
 """
 
 class SingletonMeta(type):
@@ -28,3 +27,15 @@ class Singleton(metaclass=SingletonMeta):
         pass
 
 s1 = Singleton()
+s2 = Singleton()
+s3 = Singleton()
+
+# Check if all instances refer to the same object
+print(id(s1))
+print(id(s2))
+print(id(s3))
+
+# Verify if they are all the same object
+print(s1 is s2)
+print(s1 is s3)
+print(s2 is s3)
