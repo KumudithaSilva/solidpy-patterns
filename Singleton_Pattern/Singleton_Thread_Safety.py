@@ -25,3 +25,6 @@ class ThreadingSafeSingleton:
 
 # Create an instance of the singleton class
 s1 = ThreadingSafeSingleton()
+s2 = ThreadingSafeSingleton()
+
+print(s1 is s2)
