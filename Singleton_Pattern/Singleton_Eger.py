@@ -1,18 +1,18 @@
 """
-Eager Loading - The Idea of eager loading is load the instance before need it.
+Eager Loading Singleton using metaclass __init__
 
-It is useful for data preloading and caching, connectivity pre-caching and
-frequent and fast access.
+1. This version creates the instance eagerly when the class is defined (not when an object is created)
+2. The instance is created inside the metaclass's __init__ method and runs after the class is created.
+3. It is useful for data preloading and caching, connectivity pre-caching and frequent and fast access.
+4. Python does not support eager instantiation, but using a metaclass, it can be achieved.
+5. Eager loading can be achieved by called init method before call method.
 
-Python does not support eager instantiation, but using a metaclass, it can be achieved.
-
-Eager loading can be achieved by called init method before call method
 """
 class SingletonMeta(type):
     # Dictionary stores single instance of the class
     _instance = {}
 
-    # This method is called when a class is created (not an object)
+    # Called when the class is defined (not instantiated)
     # override the call during creation of the subtypes
     def __init__(cls, name, bases, dct):
         super().__init__(name, bases, dct)
@@ -20,6 +20,7 @@ class SingletonMeta(type):
         # Create and store a single instance of the class right away
         # eager loading the class instance
         cls._instance[cls] = super().__call__()
+        print("Initializing <super>")
 
     # This method is called when trying to create (call) an object of the class
     def __call__(cls, *args, **kwargs):
@@ -28,7 +29,7 @@ class SingletonMeta(type):
 
 class Singleton(metaclass=SingletonMeta):
     def __init__(self):
-        print("Initializing Singleton instance")
+        print("Initializing <child>")
 
 obj1 = Singleton()
 obj2 = Singleton()
