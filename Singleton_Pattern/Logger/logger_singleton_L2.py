@@ -1,6 +1,7 @@
 import logging
 import threading
 
+
 class SingletonMeta(type):
     _instance = {}
     _lock = threading.Lock()
@@ -10,6 +11,7 @@ class SingletonMeta(type):
             if cls not in cls._instance:
                 cls._instance[cls] = super(SingletonMeta, cls).__call__(*args, **kwargs)
         return cls._instance[cls]
+
 
 class Logger(metaclass=SingletonMeta):
     _logger = None
@@ -32,7 +34,9 @@ class Logger(metaclass=SingletonMeta):
         console_handler.setLevel(logging.INFO)
 
         # Create formater and add it to both handlers
-        formater = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        formater = logging.Formatter(
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        )
         file_handler.setFormatter(formater)
         console_handler.setFormatter(formater)
 
