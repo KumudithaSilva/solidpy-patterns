@@ -20,13 +20,13 @@ class Number_Generator:
             self._init_number += 1
 
     def get_next_number(self):
-        return self._init_number
+        with self._lock:
+            return self._init_number
 
-def test_singleton_thread_safe():
+def singleton_thread_safe():
     generator = Number_Generator()
     generator.generate_next_number()
     print(f"Generated Number: {generator.get_next_number()}")
-
 
 
 if __name__ == '__main__':
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     threads = []
 
     for _ in range(10):
-        t = threading.Thread(target=test_singleton_thread_safe())
+        t = threading.Thread(target=singleton_thread_safe)
         threads.append(t)
         t.start()
 

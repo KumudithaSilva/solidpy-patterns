@@ -2,6 +2,7 @@ import json
 
 class ConfigManager:
     _instance = None
+    _initialized = False
 
     def __new__(cls, *args, **kwargs):
         # Implement the singleton pattern
@@ -11,7 +12,10 @@ class ConfigManager:
 
     def __init__(self):
         # Initialize an empty dictionary to store the configuration settings
-        self.config = {}
+        if not self.__class__._initialized:
+            self.config = {}
+            self.__class__._initialized = True
+
 
     def load_config(self, config_file):
         # Read the JSON configuration file and store the settings in the dictionary
