@@ -60,7 +60,7 @@
 
 ### 🛠️ Design Considerations
 
-- Naming: factory methods are often named createSomething().
-- Flexibility vs. Complexity: use Factory Method only when object creation logic varies.
-- Often used together with Abstract Factory and Template Method patterns.
+- Factory Method only when object creation logic varies.
+- GoF Factory Method vs. Simple Factory - object creation is centralized in a single method (Simple Factory), 
+while subclasses decide which class to instantiate (Factory Method, GoF).
 
