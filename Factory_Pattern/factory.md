@@ -1,7 +1,7 @@
 # 🏭💡 Factory Method Design Pattern
 
 
-> Factory Method is a creational design pattern that abstract out the creation logic of the specific class instances.
+> Factory Method is a creational design pattern that abstracts out the creation logic of the specific class instances.
 
 > It is a way to create objects without exposing the instantiation logic. 
  >- In Factory Pattern objects are created by calling factory method instead of calling a constructor.
@@ -10,7 +10,7 @@
  >- Creation logic is encapsulated, promoting abstraction and loose coupling.
  >
 > 
- >- To create objects it used common interface.
+ >- To create objects, it used a common interface.
 
 >Defines an interface for creating objects,
 > but lets subclasses decide which concrete product class to use.
@@ -30,7 +30,7 @@
 
 - Provides a way to delegate instantiation to subclasses.
 - Promotes programming to an interface, not an implementation.
-- Decouples object creation from object usage.
+- Decouple object creation from object usage.
 
 ### 💻 Use Cases
 
