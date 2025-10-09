@@ -23,6 +23,6 @@ control and return the one existing object. <br> <br>
 > 3. Instantiation through static method
 
 
-<img src=../images/singleton_generic.png alt="img" width="300px" />
+<img src= /assets/images/singleton_generic.png alt="img" width="300px" />
 
   

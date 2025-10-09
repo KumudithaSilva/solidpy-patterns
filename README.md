@@ -22,7 +22,7 @@ Foundational OOP design principles every developer should internalize:
 Grouped by category, with each implementation focused on simplicity, structure, and clarity.
 
 #### 🏗️ Creational Patterns
-- [Singleton](Singleton_Pattern/singleton.md)
+- [Singleton](Design_Patterns/Singleton_Pattern/singleton.md)
 - Factory Method
 - Abstract Factory
 - Builder

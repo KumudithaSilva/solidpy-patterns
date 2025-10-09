@@ -15,7 +15,7 @@
 
 ### Singleton Design Pattern
 <br>
-<img src=../images/Singleton.jpg alt="img" width="500px" />
+<img src= /assets/images/Singleton.jpg alt="img" width="500px" />
 
   
 ## 🎯 Key Points

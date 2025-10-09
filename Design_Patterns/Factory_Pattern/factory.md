@@ -21,7 +21,7 @@
 
 ### Factory Method Design Pattern
 <br>
-<img src=../images/Factory_Method.png alt="img" width="500px" />
+<img src= /assets/images/Factory_Method.png alt="img" width="500px" />
 
   
 ## 🎯 Key Points
