@@ -1,7 +1,7 @@
 class BankAccount:
     def __init__(self, account_number, balance):
-        self._account_number = account_number # protected
-        self.__balance = balance # private
+        self._account_number = account_number  # protected
+        self.__balance = balance  # private
 
     # get method for private attribute
     def get_balance(self):
@@ -28,14 +28,10 @@ class BankAccount:
 
 
 account = BankAccount("HNB9797", 2000)
-print("Initial Bank Amount :",account.get_balance())
+print("Initial Bank Amount :", account.get_balance())
 account.set_balance(50000)
-print("Updated Bank Amount :",account.get_balance())
+print("Updated Bank Amount :", account.get_balance())
 account.deposit(90000)
-print("Deposited Bank Amount :",account.get_balance())
+print("Deposited Bank Amount :", account.get_balance())
 account.withdraw(70000)
-print("Withdraw Bank Amount :",account.get_balance())
-
-
-
-
+print("Withdraw Bank Amount :", account.get_balance())

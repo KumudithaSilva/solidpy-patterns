@@ -8,6 +8,8 @@ Eager Loading Singleton using metaclass __init__
 5. Eager loading can be achieved by called init method before call method.
 
 """
+
+
 class SingletonMeta(type):
     # Dictionary stores single instance of the class
     _instance = {}
@@ -27,9 +29,11 @@ class SingletonMeta(type):
         # Instead of creating a new object, always return the same stored instance
         return cls._instance[cls]
 
+
 class Singleton(metaclass=SingletonMeta):
     def __init__(self):
         print("Initializing <child>")
+
 
 obj1 = Singleton()
 obj2 = Singleton()

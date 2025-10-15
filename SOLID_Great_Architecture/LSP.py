@@ -16,13 +16,16 @@ but instead, it contradicts the superclass’s behavior.
 This breaks the LSP because the subclass does not follow the expected behavior of the superclass.
 """
 
+
 class Number:
     def divisible(self):
         print("This number is divisible by 2 with no remainder.")
 
+
 class Non_primernumber(Number):
     def divisible(self):
         print("This number is not divisible by 2 with no remainder.")
+
 
 # ===============================================================================#
 
@@ -39,13 +42,16 @@ class Number:
     def divisible(self):
         pass
 
+
 class EvenNumber(Number):
     def divisible(self):
         print("This number is divisible by 2 with no remainder.")
 
+
 class OddNumber(Number):
     def divisible(self):
         print("This number is NOT divisible by 2 with no remainder.")
+
 
 class Two(EvenNumber):
     pass

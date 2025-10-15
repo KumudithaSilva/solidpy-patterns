@@ -22,6 +22,7 @@ This violates the SRP, which states that a class should have only one reason to 
 
 """
 
+
 class LibrarySystem:
     def __init__(self):
         self.books = []
@@ -45,7 +46,7 @@ class LibrarySystem:
         self.delete_book(book)
 
 
-#===============================================================================#
+# ===============================================================================#
 
 """
 
@@ -95,5 +96,3 @@ class BookInput:
     @staticmethod
     def remove_book():
         return input("Enter book title to remove: ")
-
-

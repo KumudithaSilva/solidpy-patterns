@@ -1,5 +1,6 @@
 import json
 
+
 class ConfigManager:
     _instance = None
     _initialized = False
@@ -16,15 +17,15 @@ class ConfigManager:
             self.config = {}
             self.__class__._initialized = True
 
-
     def load_config(self, config_file):
         # Read the JSON configuration file and store the settings in the dictionary
-        with open(config_file, 'r') as file:
+        with open(config_file, "r") as file:
             self.config = json.load(file)
 
     def get_setting(self, key):
         # Retrieve the setting value by key
         return self.config[key]
+
 
 # Create a sample JSON configuration file named 'config.json'
 sample_config = {
@@ -32,12 +33,9 @@ sample_config = {
         "host": "localhost",
         "port": 5432,
         "user": "admin",
-        "password": "password"
+        "password": "password",
     },
-    "api": {
-        "host": "0.0.0.0",
-        "port": 8000
-    }
+    "api": {"host": "0.0.0.0", "port": 8000},
 }
 
 with open("config.json", "w") as f:

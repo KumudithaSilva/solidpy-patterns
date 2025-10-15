@@ -20,6 +20,7 @@ class Manager(Employee):
     def description(self):
         super().description()
 
+
 # Define a concrete class 'Manager' that inherited from the Employee class
 class CEO(Employee):
     def role(self):

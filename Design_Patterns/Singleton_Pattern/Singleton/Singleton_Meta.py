@@ -8,6 +8,7 @@ By default, all Python classes implicitly inherit from the type build-class,
 which itself a Meta class.
 """
 
+
 class SingletonMeta(type):
     # Dictionary stores single instance of the class
     # Each subclass of the SingletonMeta metaclass
@@ -22,9 +23,11 @@ class SingletonMeta(type):
             cls._instance[cls] = instance
         return cls._instance[cls]
 
+
 class Singleton(metaclass=SingletonMeta):
     def some_implementation(self):
         pass
+
 
 s1 = Singleton()
 s2 = Singleton()

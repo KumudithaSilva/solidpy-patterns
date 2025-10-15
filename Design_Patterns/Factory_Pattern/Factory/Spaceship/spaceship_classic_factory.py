@@ -8,6 +8,7 @@ import random
 # Easily extensible: It can add new types by adding new factories.
 # Better for large systems where object creation varies frequently.
 
+
 # Base abstract class for spaceship
 class SpaceShip(ABC):
     def __init__(self, position, size, name, speed):

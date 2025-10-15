@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 # Define abstract class
 class Shape(ABC):
     def __init__(self, color):
@@ -18,6 +19,7 @@ class Shape(ABC):
 
 
 # Define a concrete classes that inherits from shape
+
 
 class Rectangle(Shape):
     def __init__(self, width, height, color):
@@ -41,16 +43,18 @@ class Circle(Shape):
         return 2 * 3.145 * self.radios
 
     def area(self):
-        return  3.145 * (self.radios ** 2)
+        return 3.145 * (self.radios**2)
+
 
 # Interface contact method
-def process_shape(obj : Shape):
+def process_shape(obj: Shape):
     obj.description()
+
 
 rectangle = Rectangle(20, 12, "Blue")
 print(f"Rectangle area is: ", rectangle.area())
 
-circle = Circle(7,"Green")
+circle = Circle(7, "Green")
 print(f"Circle area is: ", circle.area())
 
 process_shape(rectangle)

@@ -4,7 +4,9 @@ Thread Safety in Singleton
 In a multithreaded environment, if multiple threads try to create a Singleton instance at the same time,
 it can lead to race conditions, resulting in multiple instances being created.
 """
+
 import threading
+
 
 class ThreadingSafeSingleton:
     # Class-level variable to store the single instance of the class
@@ -22,6 +24,7 @@ class ThreadingSafeSingleton:
                 cls._instance = super().__new__(cls)
         # Return the single instance (existing or newly created)
         return cls._instance
+
 
 # Create an instance of the singleton class
 s1 = ThreadingSafeSingleton()

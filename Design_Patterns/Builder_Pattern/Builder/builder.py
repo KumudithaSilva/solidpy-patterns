@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 # Define product class
 class Sandwich:
     def __init__(self):
@@ -49,11 +50,11 @@ class HamSandwichBuilder(SandwichBuilder):
     def add_bread(self):
         self.sandwich.add_ingredients("White Bread")
 
-
     def add_filling(self):
         self.sandwich.add_ingredients("Ham")
         self.sandwich.add_ingredients("Cheese")
         self.sandwich.add_ingredients("Mayonnaise")
+
 
 # Define the director class
 class SandwichDirector:
@@ -65,6 +66,7 @@ class SandwichDirector:
         self.builder.add_bread()
         self.builder.add_filling()
         return self.builder.get_result()
+
 
 # Client
 veggie_builder = VeggieSandwichBuilder()

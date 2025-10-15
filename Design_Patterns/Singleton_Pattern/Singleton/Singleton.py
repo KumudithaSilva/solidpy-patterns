@@ -10,4 +10,5 @@ class Singleton:
         # return the singleton instance class or newly created one
         return cls._instance
 
+
 s1 = Singleton()

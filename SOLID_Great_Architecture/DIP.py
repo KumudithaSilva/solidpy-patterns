@@ -15,13 +15,16 @@ it can’t easily change the input devices.
 This breaks the DIP because high-level class never should depends on low-level class.
 """
 
+
 class Keyboard:
     def keboard_message(self):
         return "Keyboard - User typed: Hello"
 
+
 class Mic:
     def mic_message(self):
         return "Microphone - User sayed: Hello"
+
 
 class Computer:
     def __init__(self):
@@ -33,6 +36,7 @@ class Computer:
             self.keyboard.keboard_message()
         elif method == "mic":
             self.mic.mic_message()
+
 
 # ===============================================================================#
 
@@ -49,25 +53,30 @@ Refactored Solution:
 
 from abc import ABC, abstractmethod
 
+
 class IMessageDevice(ABC):
     @abstractmethod
     def send(self, message):
         pass
 
+
 class KeyboardService(IMessageDevice):
     def send(self, message):
         return f"Keyboard - User typed: {message}"
+
 
 class MicService(IMessageDevice):
     def send(self, message):
         return f"Mic - User sayed: {message}"
 
+
 class Machine:
-    def __init__(self, message_device : IMessageDevice):
+    def __init__(self, message_device: IMessageDevice):
         self.message_device = message_device
 
     def send_message(self, message):
         return self.message_device.send(message)
+
 
 keyboard_machine = Machine(KeyboardService())
 print(keyboard_machine.send_message("Hello Keyboard"))

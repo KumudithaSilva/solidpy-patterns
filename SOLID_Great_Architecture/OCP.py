@@ -16,6 +16,7 @@ notification type (e.g., WhatsApp, Slack) is introduced.
 This breaks the OCP, as the class is not closed for modification.
 """
 
+
 class NotificationSender:
     def send(self, notification_type, message):
         if notification_type == "email":
@@ -24,6 +25,7 @@ class NotificationSender:
             print(f"Sending SMS with message: {message}")
         elif notification_type == "push":
             print(f"Sending push notification with message: {message}")
+
 
 # Usage
 sender = NotificationSender()
@@ -44,43 +46,50 @@ Refactored Solution:
 
 from abc import ABC, abstractmethod
 
+
 # Abstract base class for all notification types
 class Notification(ABC):
     @abstractmethod
     def send(self, message):
         pass
 
+
 # Email Notification
 class EmailNotification(Notification):
     def send(self, message):
         print(f"Sending email with message: {message}")
+
 
 # SMS Notification
 class SMSNotification(Notification):
     def send(self, message):
         print(f"Sending SMS with message: {message}")
 
+
 # Push Notification
 class PushNotification(Notification):
     def send(self, message):
         print(f"Sending push notification with message: {message}")
+
 
 # New Notification Type: WhatsApp
 class WhatsAppNotification(Notification):
     def send(self, message):
         print(f"Sending WhatsApp message: {message}")
 
+
 # Sender class that uses polymorphism
 class NotificationSender:
     def send(self, notification: Notification, message: str):
         notification.send(message)
+
 
 # Usage
 notifications = [
     EmailNotification(),
     SMSNotification(),
     PushNotification(),
-    WhatsAppNotification()
+    WhatsAppNotification(),
 ]
 
 sender = NotificationSender()

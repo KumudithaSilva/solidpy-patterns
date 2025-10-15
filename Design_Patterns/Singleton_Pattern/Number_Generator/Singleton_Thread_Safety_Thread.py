@@ -1,5 +1,6 @@
 import threading
 
+
 class Number_Generator:
     _instance = None
     _init_number = 0
@@ -23,13 +24,14 @@ class Number_Generator:
         with self._lock:
             return self._init_number
 
+
 def singleton_thread_safe():
     generator = Number_Generator()
     generator.generate_next_number()
     print(f"Generated Number: {generator.get_next_number()}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Create a list to store threads
     threads = []
 

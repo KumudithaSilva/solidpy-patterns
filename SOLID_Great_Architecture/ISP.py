@@ -16,6 +16,8 @@ This breaks ISP because a class should not be forced to depend on methods or int
 """
 
 from abc import ABC, abstractmethod
+
+
 class IRestaurantMenu(ABC):
     @abstractmethod
     def pizza(self):
@@ -32,6 +34,7 @@ class IRestaurantMenu(ABC):
     @abstractmethod
     def smoothie(self):
         pass
+
 
 class Pizza(IRestaurantMenu):
     def pizza(self):
@@ -54,28 +57,31 @@ Refactored Solution:
 
 from abc import ABC, abstractmethod
 
+
 class IPizzaMenu(ABC):
     @abstractmethod
     def pizza(self):
         pass
+
 
 class ISushiMenu(ABC):
     @abstractmethod
     def sushi(self):
         pass
 
+
 class IBurger(ABC):
     @abstractmethod
     def burger(self):
         pass
+
 
 class ISmoothie(ABC):
     @abstractmethod
     def smoothie(self):
         pass
 
+
 class Pizza_Order(IPizzaMenu):
     def pizza(self):
         print("Ordering pizza")
-
-

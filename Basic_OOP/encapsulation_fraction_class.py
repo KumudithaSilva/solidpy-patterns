@@ -1,5 +1,6 @@
 import math
 
+
 class Fraction:
     def __init__(self, numerator, denominator):
         if denominator == 0:
@@ -8,12 +9,16 @@ class Fraction:
         self.denominator = denominator
 
     def add(self, other):
-        new_num = self.numerator * other.denominator + other.numerator * self.denominator
+        new_num = (
+            self.numerator * other.denominator + other.numerator * self.denominator
+        )
         new_den = self.denominator * other.denominator
         return Fraction(new_num, new_den)
 
     def subtract(self, other):
-        new_num = self.numerator * other.denominator - other.numerator * self.denominator
+        new_num = (
+            self.numerator * other.denominator - other.numerator * self.denominator
+        )
         new_den = self.denominator * other.denominator
         return Fraction(new_num, new_den)
 

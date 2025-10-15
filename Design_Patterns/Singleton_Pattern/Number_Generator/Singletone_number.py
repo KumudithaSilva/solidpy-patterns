@@ -1,4 +1,3 @@
-
 class Number_Generator:
     _instance = None
     _init_number = 0
@@ -19,7 +18,7 @@ class Number_Generator:
         return self._init_number
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Testing the singleton behavior and number generator
     number_gen_1 = Number_Generator()
     number_gen_2 = Number_Generator()
