@@ -46,42 +46,44 @@ class UserBuilder(ABC):
         pass
 
     @abstractmethod
-    def add_email(self,email):
+    def add_email(self, email):
         pass
 
     @abstractmethod
-    def build(self) -> User: pass
+    def build(self) -> User:
+        pass
+
 
 class CustomUserBuilder(UserBuilder):
     def __init__(self):
         self.user = {}
 
     def add_first_name(self, first_name):
-        self.user['first_name'] = first_name
+        self.user["first_name"] = first_name
         return self
 
     def add_last_name(self, last_name):
-        self.user['last_name'] = last_name
+        self.user["last_name"] = last_name
         return self
 
     def add_age(self, age):
-        self.user['age'] = age
+        self.user["age"] = age
         return self
 
     def add_phone_number(self, phone_number):
-        self.user['phone_number'] = phone_number
+        self.user["phone_number"] = phone_number
         return self
 
     def add_address(self, address):
-        self.user['address'] = address
+        self.user["address"] = address
         return self
 
     def add_email(self, email):
-        self.user['email'] = email
+        self.user["email"] = email
         return self
 
     def build(self) -> User:
-        if 'first_name' not in self.user or 'last_name' not in self.user:
+        if "first_name" not in self.user or "last_name" not in self.user:
             raise ValueError("Missing required fields: 'first_name' and 'last_name'")
         return User(**self.user)
 
@@ -92,18 +94,16 @@ class UserDirector:
 
     def build_user(self, user):
         return (
-            self.builder
-                .add_first_name(user['first_name'])
-                .add_last_name(user['last_name'])
-                .add_email(user['email'])
-                .build()
+            self.builder.add_first_name(user["first_name"])
+            .add_last_name(user["last_name"])
+            .add_email(user["email"])
+            .build()
         )
 
 
 builder = CustomUserBuilder()
 user = (
-    builder
-    .add_first_name("Ann")
+    builder.add_first_name("Ann")
     .add_last_name("Bee")
     .add_email("AnnBee@gmail.com")
     .build()
@@ -112,7 +112,3 @@ user = (
 # Call the getter
 full_info = user.get_full_info()
 print(full_info)
-
-
-
-
