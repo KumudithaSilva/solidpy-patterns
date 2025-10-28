@@ -16,7 +16,7 @@
 
 ### Builder Design Pattern
 <br>
-<img src= /assets/images/Builder.png alt="img" width="700px" />
+<img src= /assets/images/Class_Diagram.png alt="img" width="700px" />
 
   
 ## 🎯 Key Points
