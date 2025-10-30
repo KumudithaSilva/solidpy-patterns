@@ -3,40 +3,123 @@ from typing import List
 import xml.etree.ElementTree as ET
 import json
 
+
 class Contact:
-    def __init__(self, full_name, email, phone_number, is_friend):
+    """Represents a single contact entry."""
+
+    def __init__(self, full_name: str, email: str, phone_number: str, is_friend: bool):
         self.full_name = full_name
         self.email = email
         self.phone = phone_number
         self.is_friend = is_friend
 
     def __str__(self):
-        return f"{self.full_name} ({self.email}) - {self.phone} {'(Friend)' if self.is_friend else ''}"
+        friend_tag = " (Friend)" if self.is_friend else ""
+        return f"{self.full_name} ({self.email}) - {self.phone}{friend_tag}"
 
 
-# Base class for reading file data
+# --------------------------
+# Abstract File Reader
+# --------------------------
+# Defines an abstract base for all file readers.
 class FileReader(ABC):
-    def __init__(self, file_name):
+    def __init__(self, file_name: str):
         self.file_name = file_name
 
     @abstractmethod
     def read(self) -> str:
+        """Read and return the raw content of the file."""
         pass
 
 
-# Add specific file readers
+# --------------------------
+# Concrete File Readers
+# --------------------------
+# Implementations of FileReader for specific formats.
 class XMLReader(FileReader):
+    """Reads data from an XML file."""
+
     def read(self) -> str:
-        with open(self.file_name) as f:
+        with open(self.file_name, encoding="utf-8") as f:
             return f.read()
 
 
 class JSONReader(FileReader):
+    """Reads data from a JSON file."""
+
     def read(self) -> str:
-        with open(self.file_name) as f:
+        with open(self.file_name, encoding="utf-8") as f:
             return f.read()
 
 
+# --------------------------
+# Abstract Contracts Adapter
+# --------------------------
+# Base adapter class for transforming file data into Contact objects.
+class ContractsAdapter(ABC):
+    def __init__(self, data_source: FileReader):
+        self.data_source = data_source
 
-if __name__ == '__main__':
-    print(JSONReader('data/contacts.json').read())
+    @abstractmethod
+    def get_contracts(self) -> List[Contact]:
+        """Convert the data source content into a list of Contact objects."""
+        pass
+
+
+# --------------------------
+# Concrete Contracts Adapters
+# --------------------------
+# These adapters parse raw file data into structured Contact objects.
+class XMLContractsAdapter(ContractsAdapter):
+    """Parses XML data and converts it into Contact objects."""
+
+    def get_contracts(self) -> List[Contact]:
+        root = ET.fromstring(self.data_source.read())
+        contacts = []
+
+        for elem in root.iter("contact"):
+            full_name = elem.find("full_name").text
+            email = elem.find("email").text
+            phone_number = elem.find("phone_number").text
+            is_friend = elem.find("is_friend").text.lower() == "true"
+            contact = Contact(full_name, email, phone_number, is_friend)
+            contacts.append(contact)
+
+        return contacts
+
+
+class JSONContractsAdapter(ContractsAdapter):
+    """Parses JSON data and converts it into Contact objects."""
+
+    def get_contracts(self) -> List[Contact]:
+        data_dict = json.loads(self.data_source.read())
+        contacts = []
+
+        for contact_data in data_dict["contacts"]:
+            contact = Contact(
+                contact_data["full_name"],
+                contact_data["email"],
+                contact_data["phone_number"],
+                contact_data["is_friend"],
+            )
+            contacts.append(contact)
+
+        return contacts
+
+
+# --------------------------
+# Utility Function
+# --------------------------
+def print_contact_data(contacts_source: ContractsAdapter):
+    """Prints formatted contact information from a given data source."""
+    for contact in contacts_source.get_contracts():
+        print(contact)
+
+
+# --------------------------
+# Entry Point
+# --------------------------
+if __name__ == "__main__":
+    json_reader = JSONReader("data/contacts.json")
+    json_adapter = JSONContractsAdapter(json_reader)
+    print_contact_data(json_adapter)
