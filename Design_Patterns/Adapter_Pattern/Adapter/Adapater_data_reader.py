@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 from typing import List
 import xml.etree.ElementTree as ET
-import json
+import json, csv
+
+from numpy.lib.recfunctions import join_by
 
 
 class Contact:
@@ -51,6 +53,12 @@ class JSONReader(FileReader):
         with open(self.file_name, encoding="utf-8") as f:
             return f.read()
 
+class CSVReader(FileReader):
+    """Reads data from a CSV file."""
+
+    def read(self) -> str:
+        with open(self.file_name, encoding="utf-8") as f:
+            return f.read()
 
 # --------------------------
 # Abstract Contracts Adapter
@@ -106,6 +114,25 @@ class JSONContractsAdapter(ContractsAdapter):
 
         return contacts
 
+class CSVContractsAdapater(ContractsAdapter):
+
+    def get_contracts(self) -> List[Contact]:
+        contacts = []
+
+        csv_content = csv.reader(self.data_source.read().splitlines())
+        next(csv_content, None)
+
+        for lines in csv_content:
+            full_name = lines[0]
+            email = lines[1]
+            phone_number = lines[2]
+            is_friend = lines[3].lower() == "true"
+
+            contact = Contact(full_name, email, phone_number, is_friend)
+            contacts.append(contact)
+
+        return contacts
+
 
 # --------------------------
 # Utility Function
@@ -120,6 +147,12 @@ def print_contact_data(contacts_source: ContractsAdapter):
 # Entry Point
 # --------------------------
 if __name__ == "__main__":
+    print("==JSON==")
     json_reader = JSONReader("data/contacts.json")
     json_adapter = JSONContractsAdapter(json_reader)
     print_contact_data(json_adapter)
+
+    print("\n==CSV==")
+    csv_adapter = CSVReader("data/contacts.csv")
+    csv_adapter = CSVContractsAdapater(csv_adapter)
+    print_contact_data(csv_adapter)
