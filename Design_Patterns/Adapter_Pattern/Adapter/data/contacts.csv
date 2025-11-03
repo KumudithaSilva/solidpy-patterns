@@ -1,0 +1,4 @@
+full_name,email,phone_number,is_friend
+John Doe,john.doe@example.com,555-1234,True
+Jane Smith,jane.smith@example.com,555-5678,False
+Darren Walker,d.walker@example.com,555-9999,True
